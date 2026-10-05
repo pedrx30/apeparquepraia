@@ -6,6 +6,10 @@ Projeto independente, sem ligação com Cordeiro Tattoos. Landing page estática
 
 Execute `node server.mjs` nesta pasta e acesse http://127.0.0.1:4173.
 
+## Publicação na Vercel
+
+O `vercel.json` na raiz do repositório configura o site estático para publicar `dist`, onde está o `index.html`. Não é necessário mover o HTML para a raiz. Use a raiz do repositório como Root Directory na Vercel, com a branch de produção `main`. Não há instalação de dependências ou etapa de compilação. Novos commits na main acionam a publicação quando a integração com GitHub está conectada.
+
 ## Alterações do cliente
 
 - Foto principal: substitua `dist/assets/sacada.jpg`.
