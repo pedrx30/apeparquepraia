@@ -11,4 +11,4 @@ http.createServer(async (req,res) => {
     const data = await readFile(file);
     res.writeHead(200, {'Content-Type':types[path.extname(file)] || 'application/octet-stream','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'}).end(data);
   } catch { res.writeHead(404).end('Não encontrado'); }
-}).listen(4173,'127.0.0.1',() => console.log('AP Park Praia: http://127.0.0.1:4173'));
+}).listen(4173,'127.0.0.1',() => console.log('Apê Parque Praia: http://127.0.0.1:4173'));

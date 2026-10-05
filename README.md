@@ -1,4 +1,4 @@
-# AP Park Praia
+# Apê Parque Praia
 
 Projeto independente, sem ligação com Cordeiro Tattoos. Landing page estática em português, com navegação por âncoras, animações progressivas, menu móvel e respeito à preferência de movimento reduzido.
 
