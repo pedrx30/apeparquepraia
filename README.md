@@ -24,7 +24,7 @@ Prévia local: execute `node server.mjs` nesta pasta e abra http://127.0.0.1:417
 
 ## Rolagem vertical e entradas suaves
 
-A página inteira usa rolagem vertical nativa. Os cartões de Endereços e Locais importantes ficam em uma coluna e se agrupam com `position: sticky`, sobrepondo-se verticalmente conforme os próximos chegam. Não há conversão de scroll para o eixo horizontal, pin artificial, cena absoluta ou espaçadores gerados por JavaScript.
+A página inteira usa rolagem vertical nativa. Os cartões de Endereços, Locais importantes e das duas categorias de praias ficam em uma coluna e se agrupam com `position: sticky`, sobrepondo-se verticalmente conforme os próximos chegam. Não há conversão de scroll para o eixo horizontal, pin artificial, cena absoluta ou espaçadores gerados por JavaScript.
 
 Um IntersectionObserver compartilhado faz as seções e os cartões surgirem suavemente uma vez, seguindo o padrão da página de praias. A paleta, fotografias, transições translúcidas, textos e ações são preservados. Fotos dos cartões são carregadas sob demanda e decodificadas de forma assíncrona.
 

@@ -43,3 +43,15 @@ Estado anterior preservado no commit `1dd3c26`, sincronizado com GitHub e árvor
 - Títulos dos locais atualizados nesta publicação: **Beto Carrero 1.6km**; **Farmácia Preço Popular 900m**, com **(fecha 22h)** em linha própria logo abaixo. Preservar endereços, links Maps e informação sobre o caminho do Beto Carrero.
 
 - Menu sem numeração: todas as oito entradas usam o mesmo marcador circular à esquerda e alinhado na mesma coluna, inclusive Praias.
+
+## Cartões e praias — V3.9.2
+
+- Todos os nomes que informam distância usam Nome - distância, incluindo metros e quilômetros.
+- Entrada para praias: Praias em Penha SC; Aproveite nossas maravilhas naturais; botão Conhecer as praias preservado.
+- Locais e praias compartilham a classe vertical-stack-card e o mesmo agrupamento sticky nativo. Na página de praias, o índice do agrupamento reinicia em cada uma das duas categorias, preservando a ordem e todos os conteúdos.
+- Voltar ao início no rodapé da página de praias leva a #praias-inicio nessa mesma página.
+
+- Página de praias usa o mesmo menu fixo da principal, sem Voltar ao guia no cabeçalho. Praias leva ao topo da própria página; as outras sete entradas levam às respectivas âncoras do guia principal.
+
+- Menu mantém o fundo bege original, sem destaque permanente em Praias; todas as entradas têm o mesmo estilo.
+- No cartão Você está aqui, o endereço aparece antes de Apto 405 B. A cópia do endereço continua sem o apartamento.

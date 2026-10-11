@@ -47,12 +47,12 @@ html.reveal-enabled [data-scroll-reveal].reveal-visible{opacity:1}
 .places-section h2{font-size:34px;margin-bottom:24px}
 .places-section .eyebrow{margin-bottom:10px}
 .place-stack{display:flex;flex-direction:column;gap:20px;overflow:visible}
-.place-card{position:sticky;top:calc(var(--header-height) + 12px + var(--stack-order,0)*8px);z-index:calc(var(--stack-order,0) + 1);width:100%;height:auto;min-height:0;margin:0;flex:none;border-radius:20px;overflow:hidden;background:var(--cream);box-shadow:0 4px 18px #29372a26;display:flex;flex-direction:column}
-.place-card:has(:focus-visible){z-index:12}
+.place-card{width:100%;height:auto;min-height:0;margin:0;flex:none;border-radius:20px;overflow:hidden;background:var(--cream);box-shadow:0 4px 18px #29372a26;display:flex;flex-direction:column}
+.vertical-stack-card:has(:focus-visible){z-index:12}
 .place-card[data-appear]{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.65,.25,1)}
 .place-card[data-appear].shown{opacity:1;transform:none}
-@media(max-height:540px){.place-card{position:relative;top:auto}}
-@media(prefers-reduced-motion:reduce){.place-card{position:relative;top:auto}.place-card[data-appear]{opacity:1!important;transform:none!important;transition:none!important}}
+@media(max-height:540px){.vertical-stack-card{position:relative!important;top:auto!important}}
+@media(prefers-reduced-motion:reduce){.vertical-stack-card{position:relative!important;top:auto!important}.place-card[data-appear]{opacity:1!important;transform:none!important;transition:none!important}}
 
 /* Informações essenciais centralizadas; anfitriões lado a lado no celular. */
 .essentials article{text-align:center}
@@ -66,7 +66,7 @@ html.reveal-enabled [data-scroll-reveal].reveal-visible{opacity:1}
 /* Identidade compacta adaptada da logo fornecida. */
 .header-brand{display:block;flex-shrink:0;min-width:0}.brand-logo-frame{display:block;position:relative;width:clamp(150px,50vw,210px);height:48px;overflow:hidden}.brand-logo-frame img{position:absolute;top:50%;left:0;width:100%;height:auto;max-width:none;transform:translateY(-50%)}
 .topbar{gap:12px;border-bottom-color:#34452e20}.topbar #menu{padding:0 13px;min-height:38px;border:1px solid #34452e35;border-radius:24px;background:#e5e8db70;font-size:13px;gap:8px}.menu-close-icon{display:none}#menu[aria-expanded="true"] .menu-open-icon{display:none}#menu[aria-expanded="true"] .menu-close-icon{display:block}
-#navigation{inset-inline:12px;top:calc(100% + 8px);padding:14px 16px 16px;border:1px solid #daddcd;border-radius:16px;background:#f7f4ec;box-shadow:0 16px 40px #2632222b;max-height:calc(100svh - 84px);overflow-y:auto}.menu-heading{font-size:10px;letter-spacing:1.8px;color:var(--olive);margin:0 0 8px;padding:6px 8px}#navigation a{display:flex;align-items:center;gap:12px;min-height:44px;padding:9px 8px;border-radius:8px;font-size:15px}#navigation a>svg{margin-left:auto;width:15px;height:15px;color:var(--olive)}.menu-number{font-size:11px;color:var(--terracotta);width:22px;flex-shrink:0;font-variant-numeric:tabular-nums}#navigation .menu-sub-link{margin:0 0 5px 24px;background:#e5e8db70;font-size:14px}.menu-shade{position:fixed;inset:64px 0 0;border:0;background:#2837242e;z-index:98;touch-action:manipulation}.menu-shade[hidden]{display:none}@media(hover:hover){#navigation a:hover{background:#e5e8db}.topbar #menu:hover{background:#e5e8db}}
+#navigation{inset-inline:12px;top:calc(100% + 8px);padding:14px 16px 16px;border:1px solid #daddcd;border-radius:16px;background:#f7f4ec;box-shadow:0 16px 40px #2632222b;max-height:calc(100svh - 84px);overflow-y:auto}.menu-heading{font-size:10px;letter-spacing:1.8px;color:var(--olive);margin:0 0 8px;padding:6px 8px}#navigation a{display:flex;align-items:center;gap:12px;min-height:44px;padding:9px 8px;border-radius:8px;font-size:15px}#navigation a>svg{margin-left:auto;width:15px;height:15px;color:var(--olive)}.menu-number{font-size:11px;color:var(--terracotta);width:22px;flex-shrink:0;font-variant-numeric:tabular-nums}#navigation .menu-sub-link{margin:0;font-size:15px}.menu-shade{position:fixed;inset:64px 0 0;border:0;background:#2837242e;z-index:98;touch-action:manipulation}.menu-shade[hidden]{display:none}@media(hover:hover){#navigation a:hover{background:#e5e8db}.topbar #menu:hover{background:#e5e8db}}
 /* Regras básicas com a mesma leitura numerada da cozinha. */
 .basic-care{background:var(--cream)}.basic-care .rules{margin-top:28px}.basic-care .rule p{font-size:16px}.basic-notices{display:grid;gap:14px;margin-top:28px}.basic-notices article{padding:19px 20px;background:#e7eadf;border-radius:12px}.basic-notices article+article{background:#efe5d7}.basic-notices h3{font:550 16px/1.5 var(--sans);color:var(--green);margin:0 0 8px}.basic-notices p{font-size:15px;line-height:1.8;color:var(--muted);margin:0}.basic-care .sign{text-align:center;margin-top:28px;font-size:22px}
 /* Rodapé com marca, contatos e localização organizados. */
@@ -75,3 +75,6 @@ html.reveal-enabled [data-scroll-reveal].reveal-visible{opacity:1}
 .place-body .place-hours{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 7px}
 
 .menu-marker{display:flex;align-items:center;justify-content:center;width:22px;flex-shrink:0;color:var(--olive)}.menu-marker svg{width:8px;height:8px}#navigation .menu-sub-link{margin-left:0}
+
+/* Mesmo agrupamento nativo para locais e para cada grupo de praias. */
+.vertical-stack-card{position:sticky;top:calc(var(--header-height) + 12px + var(--stack-order,0)*8px);z-index:calc(var(--stack-order,0) + 1)}.beach-card.vertical-stack-card{margin:0;flex:none}
