@@ -1,0 +1,1 @@
+if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('reveal-enabled');setTimeout(()=>{if(!window.appearReady)document.documentElement.classList.remove('reveal-enabled');},4000);}

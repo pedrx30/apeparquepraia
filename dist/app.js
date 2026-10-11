@@ -49,8 +49,7 @@ function setupRails(){
   const stage=rail.querySelector('.card-stage');
   stage.classList.remove('rail-pin-enabled');stage.style.removeProperty('height');
  });
- equalizeCards();
- if(!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ if(!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion: reduce)').matches){equalizeCards();return;}
  gsap.registerPlugin(ScrollTrigger);
  ScrollTrigger.config({ignoreMobileResize:true});
  rails.forEach(rail=>rail.querySelector('.card-stage').classList.add('rail-pin-enabled'));
@@ -63,7 +62,7 @@ function setupRails(){
    stage.style.height=Math.ceil(Math.max(...[...stage.querySelectorAll('.place-card')].map(card=>card.offsetHeight)))+'px';
   });
   firstHeight=rails[0].offsetHeight;
-  const travel=rail=>Math.max(280,rail.querySelector('.card-stage').clientWidth*.95)*(rail.querySelectorAll('.place-card').length-1);
+  const travel=rail=>Math.max(360,rail.querySelector('.card-stage').clientWidth*1.25)*(rail.querySelectorAll('.place-card').length-1);
   firstTravel=travel(rails[0]);secondTravel=travel(rails[1]);
   // A passagem vertical já ocupa firstHeight no percurso; não reservá-la duas vezes.
   journey.style.setProperty('--journey-height',Math.max(1,journeyContent.offsetHeight-firstHeight)+'px');
@@ -80,16 +79,22 @@ function setupRails(){
   rails.forEach((rail,index)=>{
    const stage=rail.querySelector('.card-stage'),cards=[...stage.querySelectorAll('.place-card')];
    gsap.set(cards,{zIndex:i=>i+1,x:i=>i===0?0:stage.clientWidth+20});
-   const timeline=gsap.timeline({scrollTrigger:{
-    id:rail.id,trigger:journey,
-    start:()=>pin.start+(index===0?0:firstTravel+firstHeight),
-    end:()=>pin.start+(index===0?firstTravel:firstTravel+firstHeight+secondTravel),
-    scrub:true,invalidateOnRefresh:true,
-    onUpdate:self=>{
-     const active=Math.min(cards.length-1,Math.floor(self.progress*(cards.length-1)+.85));
-     cards.forEach((c,i)=>c.inert=i!==active);
+   let lastActive=-1;
+   function setActiveCard(progress){
+    const active=Math.min(cards.length-1,Math.floor(progress*(cards.length-1)+.85));
+    if(active===lastActive)return;
+    cards.forEach((card,i)=>card.inert=i!==active);lastActive=active;
+   }
+   setActiveCard(0);
+   const timeline=gsap.timeline({
+    onUpdate(){setActiveCard(this.progress());},
+    scrollTrigger:{
+     id:rail.id,trigger:journey,
+     start:()=>pin.start+(index===0?0:firstTravel+firstHeight),
+     end:()=>pin.start+(index===0?firstTravel:firstTravel+firstHeight+secondTravel),
+     scrub:0.45,invalidateOnRefresh:true
     }
-   }});
+   });
    cards.slice(1).forEach((card,j)=>timeline.fromTo(card,{x:()=>stage.clientWidth+20},{x:()=>((j+1)*8),duration:1,ease:'none'},j));
    railTriggers.set(rail.id,timeline.scrollTrigger);
   });
@@ -128,7 +133,34 @@ document.addEventListener('click',e=>{
 });
 window.addEventListener('pagehide',()=>ctx?.revert());
 window.addEventListener('pageshow',event=>{if(event.persisted)setupRails();});
-if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('shown');observer.unobserve(e.target);}}),{threshold:.05});document.querySelectorAll('.beach-card').forEach(c=>{c.dataset.appear='';observer.observe(c);});}
+function setupEntrances(){
+ const sections=[...document.querySelectorAll('[data-scroll-reveal]')];
+ const beachCards=[...document.querySelectorAll('.beach-card')];
+ const targets=[...sections,...beachCards];
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ let observer;
+ function show(target){
+  target.classList.add(target.classList.contains('beach-card')?'shown':'reveal-visible');
+  observer?.unobserve(target);
+ }
+ function showAll(){
+  observer?.disconnect();
+  document.documentElement.classList.remove('reveal-enabled');targets.forEach(show);
+ }
+ if(!('IntersectionObserver'in window)||motion.matches){showAll();window.appearReady=true;return;}
+ document.documentElement.classList.add('reveal-enabled');
+ beachCards.forEach(card=>card.dataset.appear='');
+ observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting)show(entry.target);
+ }),{threshold:0.025,rootMargin:'-64px 0px -6% 0px'});
+ targets.forEach(target=>observer.observe(target));
+ document.addEventListener('focusin',event=>{
+  const target=event.target.closest('[data-scroll-reveal],.beach-card');if(target)show(target);
+ });
+ motion.addEventListener('change',event=>{if(event.matches)showAll();});
+ window.appearReady=true;
+}
+setupEntrances();
 
 for(const [key,selector] of [['checkinVideo','#checkin .checkin-video'],['balconyVideo','#video-container']]){
  const source=MEDIA[key],holder=document.querySelector(selector);

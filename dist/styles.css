@@ -45,3 +45,8 @@ main{overflow-anchor:none}
 .rail-journey{position:relative;width:100%}.rail-journey.pinned-layout{height:var(--journey-height)}.rail-journey.pinned-layout>.rail-journey-content{position:absolute;inset:0 0 auto;width:100%;will-change:transform}.rail-inner{will-change:auto}
 
 footer>a{display:flex;align-items:center;gap:12px;min-height:44px;font-size:15px}
+
+/* Entrada por opacidade: preserva a geometria da cena fixa e dos cartões. */
+html.reveal-enabled [data-scroll-reveal]{opacity:0;transition:opacity .85s cubic-bezier(.2,.65,.25,1)}
+html.reveal-enabled [data-scroll-reveal].reveal-visible{opacity:1}
+@media(prefers-reduced-motion:reduce){html.reveal-enabled [data-scroll-reveal],.beach-card[data-appear]{opacity:1!important;transform:none!important;transition:none!important}}

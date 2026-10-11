@@ -417,3 +417,12 @@ Esta arquitetura prevalece sobre os refinamentos técnicos anteriores de fixaç�
 ## Publicação da versão aprovada
 
 Projeto principal: `site`. Branch confirmada no repositório: `main` (não master). Destino: `https://github.com/pedrx30/apeparquepraia`. Vercel publica `dist`. A implementação conserva a cena fixa aprovada e adiciona a integração das âncoras das seções verticais, a configuração dos vídeos locais futuros, metadados de produção e navegação de rodapé com contatos dos anfitriões. Não publicar gravações de demonstração, arquivos de análise ou ferramentas intermediárias.
+
+## Entrada suave e ritmo dos trilhos — 10/10/2026
+
+- Boas-vindas, check-in, regras básicas, endereços, locais importantes, cozinha, sacada e rodapé surgem gradualmente quando entram na tela.
+- A entrada das seções usa somente opacidade por 0,85 s, sem mover o pin ou alterar dimensões da cena. Os cartões de praia preservam sua entrada suave e os títulos/introdução da página também recebem a entrada.
+- Um único IntersectionObserver observa as entradas, dispara uma vez e deixa o conteúdo visível ao retornar. Há proteção contra conteúdo oculto se o script principal falhar e respeito à preferência por movimento reduzido.
+- Trilhos horizontais usam scrub 0,45 s e percurso por cartão de max(360 px, largura do palco × 1,25), proporcionando acompanhamento gradual e ritmo mais lento. A transição vertical entre trilhos permanece 1:1 e a fixação única aprovada permanece intacta.
+- Atualizações de inert dos cartões só ocorrem quando muda o cartão ativo e acompanham o progresso visual da timeline, evitando alterações repetidas a cada frame.
+- Conferência específica mobile: seção fora da tela começa invisível, passa por opacidade intermediária e termina visível; cartões acompanham o progresso com suavização até o destino, mantendo o painel na mesma posição vertical. Preferência por movimento reduzido deixa o conteúdo visível.

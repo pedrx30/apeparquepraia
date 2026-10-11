@@ -25,6 +25,8 @@ Prévia local: execute `node server.mjs` nesta pasta e abra http://127.0.0.1:417
 
 Uma cena fixa comum evita a troca de pins e alterações de layout durante o scroll. Os dois trilhos têm timelines horizontais independentes. Entre eles, uma fase vertical corresponde exatamente à altura do primeiro painel. Ao terminar, a rolagem continua para cozinha e sacada. O percurso é reversível.
 
+Os cartões horizontais acompanham a rolagem com suavização de 0,45 s e percurso maior por cartão. As seções surgem por opacidade conforme entram na tela, sem mudar a geometria da fixação. `dist/reveal-init.js` prepara a entrada antes da primeira pintura e possui proteção para deixar o conteúdo visível caso o script principal falhe.
+
 As âncoras Endereços e Locais importantes levam ao início de suas respectivas fases. Cozinha e Sacada usam a posição final da cena para localizar corretamente o conteúdo. Movimento reduzido ou ausência do GSAP deixam o conteúdo no fluxo vertical.
 
 ## Próximas mídias do cliente
