@@ -47,7 +47,7 @@ Mensagem fornecida:
 
 Exatamente três cartões verticais na seção de boas-vindas:
 
-1. **Contato anfitriões:** Bárbara e Daniel. WhatsApp: (49) 99922-3452 e (49) 99822-3711. Links `https://wa.me/5549999223452` e `https://wa.me/5549998223711`.
+1. **Contato anfitriões:** Bárbara e Daniel. WhatsApp: (49) 99822-3452 e (49) 99822-3711. Links `https://wa.link/af1j4z` e `https://wa.link/g36t7i`.
 2. **Wi-Fi:** rede `405 B`; senha `Montanharussanasacada26`. Manter capitalização exata; disponibilizar ação de cópia com resultado verdadeiro.
 3. **Checkout:** até as **12h**.
 

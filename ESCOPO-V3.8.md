@@ -24,3 +24,7 @@ Publicar na main uma versão de comparação, mantendo identidade visual e conte
 Projeto `site`, branch `main`, publicação automática pela Vercel. Criar commit separado para permitir comparação e retorno por revert.
 
 Conferência limitada às novidades em mobile: oito cartões, ausência de pin e código horizontal, entrada suave, agrupamento vertical de cartões no topo da tela, navegação por âncoras e ausência de overflow lateral/erros. Não executar testes desktop ou repetir verificações de conteúdo já confirmado.
+
+## Atualização dos contatos — V3.8.1
+
+Contato anfitriões: Bárbara e Daniel em duas colunas, com nome, número e ícone SVG do WhatsApp, nessa ordem e centralizados. Bárbara: (49) 99822-3452, https://wa.link/af1j4z. Daniel: (49) 99822-3711, https://wa.link/g36t7i. Os links do rodapé das duas páginas usam os mesmos destinos. Centralizar também conteúdo e botão dos cartões Wi-Fi e checkout. Preservar o restante do layout e da rolagem.
