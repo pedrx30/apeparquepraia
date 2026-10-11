@@ -3,11 +3,22 @@ const MEDIA = { checkinVideo: '', balconyVideo: '' };
 const arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const menu=document.querySelector('#menu'),nav=document.querySelector('#navigation');
-if(menu){menu.addEventListener('click',()=>{nav.hidden=!nav.hidden;menu.setAttribute('aria-expanded',String(!nav.hidden));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.hidden=true;menu.setAttribute('aria-expanded','false');}));}
+let menuShade;
+function closeMenu(){
+ if(!menu)return;
+ nav.hidden=true;menu.setAttribute('aria-expanded','false');menuShade.hidden=true;
+}
+if(menu){
+ menuShade=document.createElement('button');menuShade.className='menu-shade';menuShade.hidden=true;
+ menuShade.setAttribute('aria-label','Fechar menu');document.body.append(menuShade);
+ menu.addEventListener('click',()=>{const open=nav.hidden;nav.hidden=!open;menuShade.hidden=!open;menu.setAttribute('aria-expanded',String(open));});
+ menuShade.addEventListener('click',closeMenu);
+ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+}
 function photoFor(card,i,kind){const files=['sacada.jpg','beto carrero.jpg','fort atacadista.jfifs.webp','mcdonalds.jpg','Praia Alegre.png'];const importantFiles=['farmafaita-24h.jpg','farmacia-preco-popular.webp','pa-24h.jpg'];return 'assets/'+encodeURIComponent((kind==='locations'?files:importantFiles)[i]);}
 for(const stage of document.querySelectorAll('[data-places]')){
  const kind=stage.dataset.places,items=kind==='locations'?LOCATIONS:IMPORTANT;
- stage.innerHTML=items.map((c,i)=>{const image=photoFor(c,i,kind);return `<article class="place-card" style="--stack-order:${i}" data-card="${kind}-${i}" aria-label="${esc(c.name)}"><div class="card-photo">${image?`<img src="${image}" alt="${esc(c.name)}" loading="lazy" decoding="async">`:`<span class="photo-pending">${kind==='locations'?`Foto de ${esc(c.name.replace(' 500m',''))} a inserir`:esc(c.name)}</span>`}</div><div class="place-body"><div class="place-details"><h3>${esc(c.name)}</h3>${c.info?`<p class="info">${esc(c.info)}</p>`:''}${c.unit?`<p class="unit">${esc(c.unit)}</p>`:''}${c.address?`<address>${esc(c.address)}</address>`:''}</div><div class="card-actions">${c.address?`<button data-copy="${esc(c.copyAddress ?? c.address)}">Copiar endereço</button><a href="${c.url}" target="_blank" rel="noopener noreferrer">Abrir no Google Maps ${arrow}</a>`:`<a href="praias.html">Conhecer as praias ${arrow}</a>`}</div></div></article>`;}).join('');
+ stage.innerHTML=items.map((c,i)=>{const image=photoFor(c,i,kind);return `<article class="place-card" style="--stack-order:${i}" data-card="${kind}-${i}" aria-label="${esc(c.name)}"><div class="card-photo">${image?`<img src="${image}" alt="${esc(c.name)}" loading="lazy" decoding="async">`:`<span class="photo-pending">${kind==='locations'?`Foto de ${esc(c.name.replace(' 500m',''))} a inserir`:esc(c.name)}</span>`}</div><div class="place-body"><div class="place-details"><h3>${esc(c.name)}</h3>${c.hours?`<p class="place-hours">${esc(c.hours)}</p>`:''}${c.info?`<p class="info">${esc(c.info)}</p>`:''}${c.unit?`<p class="unit">${esc(c.unit)}</p>`:''}${c.address?`<address>${esc(c.address)}</address>`:''}</div><div class="card-actions">${c.address?`<button data-copy="${esc(c.copyAddress ?? c.address)}">Copiar endereço</button><a href="${c.url}" target="_blank" rel="noopener noreferrer">Abrir no Google Maps ${arrow}</a>`:`<a href="praias.html">Conhecer as praias ${arrow}</a>`}</div></div></article>`;}).join('');
 }
 for(const group of document.querySelectorAll('[data-beaches]')){
  group.innerHTML=BEACHES.filter(b=>b.group===Number(group.dataset.beaches)).map(b=>`<article class="beach-card"><div class="card-photo"><img src="assets/${encodeURIComponent(b.image)}" alt="${esc(b.name)}" loading="lazy" decoding="async"></div><div class="beach-body"><h3>${esc(b.name)}</h3><p>${esc(b.description)}</p><a href="${b.url}" target="_blank" rel="noopener noreferrer">Abrir no Google Maps ${arrow}</a></div></article>`).join('');
@@ -97,7 +108,6 @@ for(const [key,selector] of [['checkinVideo','#checkin .checkin-video'],['balcon
  holder.replaceWith(video);
 }
 if(menu){
- const closeMenu=()=>{nav.hidden=true;menu.setAttribute('aria-expanded','false');};
  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!nav.hidden){closeMenu();menu.focus();}});
  document.addEventListener('click',event=>{if(!event.target.closest('.topbar'))closeMenu();});
 }

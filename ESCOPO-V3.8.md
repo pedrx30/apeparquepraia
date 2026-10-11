@@ -28,3 +28,16 @@ Conferência limitada às novidades em mobile: oito cartões, ausência de pin e
 ## Atualização dos contatos — V3.8.1
 
 Contato anfitriões: Bárbara e Daniel em duas colunas, com nome, número e ícone SVG do WhatsApp, nessa ordem e centralizados. Bárbara: (49) 99822-3452, https://wa.link/af1j4z. Daniel: (49) 99822-3711, https://wa.link/g36t7i. Os links do rodapé das duas páginas usam os mesmos destinos. Centralizar também conteúdo e botão dos cartões Wi-Fi e checkout. Preservar o restante do layout e da rolagem.
+
+## Identidade e leitura — V3.9
+
+Estado anterior preservado no commit `1dd3c26`, sincronizado com GitHub e árvore limpa antes das alterações.
+
+- Cabeçalho de ambas as páginas usa a logo horizontal adaptada da imagem fornecida, preservando os elementos e o estilo tipográfico da marca.
+- Menu em painel com acabamento oliva/areia, botão arredondado, fechamento por toque fora e Escape. Preservar a ordem e Praias imediatamente após Endereços.
+- Regras básicas passam a usar os mesmos componentes rule, rule-number e rule-check da cozinha. Manter o texto integral das oito regras e os dois avisos de saída/danos; títulos apenas organizam a leitura.
+- Rodapé das duas páginas usa a mesma logo, contatos de Bárbara/Daniel com links fornecidos, endereço do Lavitta, link exato do Google Maps e Instagram.
+- Logo original e adaptada preservadas em assets; prompt e ferramenta registrados em BRANDING.md.
+- Conferência restrita aos elementos alterados em 320 e 390 px: logos carregadas, regras e avisos presentes, menu navegável/fechável, footer sem overflow e contatos corretos. Não repetir testes da rolagem já aprovada nem executar testes desktop.
+
+- Títulos dos locais atualizados nesta publicação: **Beto Carrero 1.6km**; **Farmácia Preço Popular 900m**, com **(fecha 22h)** em linha própria logo abaixo. Preservar endereços, links Maps e informação sobre o caminho do Beto Carrero.

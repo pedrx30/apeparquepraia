@@ -19,7 +19,8 @@ Prévia local: execute `node server.mjs` nesta pasta e abra http://127.0.0.1:417
 - `dist/app.js`: menu, cópia de texto, navegação, vídeos locais e animações.
 - `dist/assets/`: fotos locais fornecidas pelo cliente.
 - `ESCOPO-V3.6.md`: conteúdo e histórico da versão anterior.
-- `ESCOPO-V3.8.md`: experiência vertical de teste atualmente publicada.
+- `ESCOPO-V3.8.md`: experiência vertical e refinamentos atualmente publicados.
+- `BRANDING.md`: logo original, adaptação horizontal por ImageGen e prompt utilizado.
 
 ## Rolagem vertical e entradas suaves
 
