@@ -14,20 +14,26 @@ Prévia local: execute `node server.mjs` nesta pasta e abra http://127.0.0.1:417
 
 - `dist/index.html`: boas-vindas com contatos, Wi-Fi e checkout; check-in; regras básicas; endereços; locais importantes; cozinha; sacada e rodapé.
 - `dist/praias.html`: nove praias em dois grupos, com fotos, descrições e Google Maps.
-- `dist/data.js`: dados dos oito cartões dos trilhos e das nove praias. No endereço de delivery, `unit` é somente exibido; `copyAddress` exclui o apartamento.
+- `dist/data.js`: dados dos oito cartões de locais e das nove praias. No endereço de delivery, `unit` é somente exibido; `copyAddress` exclui o apartamento.
 - `dist/styles.css`: estilo Mobile First aprovado.
 - `dist/app.js`: menu, cópia de texto, navegação, vídeos locais e animações.
 - `dist/assets/`: fotos locais fornecidas pelo cliente.
-- `dist/vendor/`: GSAP 3.13.0 e ScrollTrigger, preservando os avisos de licença dos arquivos distribuídos.
-- `ESCOPO-V3.6.md`: escopo consolidado e refinamentos aprovados.
+- `ESCOPO-V3.6.md`: conteúdo e histórico da versão anterior.
+- `ESCOPO-V3.8.md`: experiência vertical de teste atualmente publicada.
 
-## Movimento dos trilhos
+## Rolagem vertical e entradas suaves
 
-Uma cena fixa comum evita a troca de pins e alterações de layout durante o scroll. Os dois trilhos têm timelines horizontais independentes. Entre eles, uma fase vertical corresponde exatamente à altura do primeiro painel. Ao terminar, a rolagem continua para cozinha e sacada. O percurso é reversível.
+A página inteira usa rolagem vertical nativa. Os cartões de Endereços e Locais importantes ficam em uma coluna e se agrupam com `position: sticky`, sobrepondo-se verticalmente conforme os próximos chegam. Não há conversão de scroll para o eixo horizontal, pin artificial, cena absoluta ou espaçadores gerados por JavaScript.
 
-Os cartões horizontais acompanham a rolagem com suavização de 0,45 s e percurso maior por cartão. As seções surgem por opacidade conforme entram na tela, sem mudar a geometria da fixação. `dist/reveal-init.js` prepara a entrada antes da primeira pintura e possui proteção para deixar o conteúdo visível caso o script principal falhe.
+Um IntersectionObserver compartilhado faz as seções e os cartões surgirem suavemente uma vez, seguindo o padrão da página de praias. A paleta, fotografias, transições translúcidas, textos e ações são preservados. Fotos dos cartões são carregadas sob demanda e decodificadas de forma assíncrona.
 
-As âncoras Endereços e Locais importantes levam ao início de suas respectivas fases. Cozinha e Sacada usam a posição final da cena para localizar corretamente o conteúdo. Movimento reduzido ou ausência do GSAP deixam o conteúdo no fluxo vertical.
+A altura comum dos cartões e o alinhamento de suas ações são medidos depois do carregamento das fontes e apenas quando a largura muda. Nenhuma medida ou ajuste de layout é feito a cada evento de scroll. As âncoras usam navegação nativa com rolagem suave. Preferência por movimento reduzido ou tela de pouca altura desativa a sobreposição, mantendo todos os cartões no fluxo.
+
+`dist/reveal-init.js` prepara a entrada antes da primeira pintura e possui proteção para deixar o conteúdo visível caso o script principal falhe.
+
+## Comparação e retorno
+
+A versão horizontal anterior está preservada no commit `d3d50f7`. Para voltar após publicar este teste, reverta o commit da versão vertical e envie o novo commit à `main`; evite reset forçado ou reescrita do histórico.
 
 ## Próximas mídias do cliente
 

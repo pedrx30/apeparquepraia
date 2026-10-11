@@ -1,5 +1,7 @@
 # Apê Parque Praia — Escopo V3.6 consolidado
 
+> Histórico da versão horizontal. A experiência atual de teste está descrita em `ESCOPO-V3.8.md`, que prevalece sobre os requisitos antigos de rolagem.
+
 Atualização: 10/10/2026
 Destinatário: Codex
 Base obrigatória: demonstração V3 validada, com refinamentos confirmados em 10/10/2026.
