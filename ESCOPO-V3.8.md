@@ -41,3 +41,5 @@ Estado anterior preservado no commit `1dd3c26`, sincronizado com GitHub e árvor
 - Conferência restrita aos elementos alterados em 320 e 390 px: logos carregadas, regras e avisos presentes, menu navegável/fechável, footer sem overflow e contatos corretos. Não repetir testes da rolagem já aprovada nem executar testes desktop.
 
 - Títulos dos locais atualizados nesta publicação: **Beto Carrero 1.6km**; **Farmácia Preço Popular 900m**, com **(fecha 22h)** em linha própria logo abaixo. Preservar endereços, links Maps e informação sobre o caminho do Beto Carrero.
+
+- Menu sem numeração: todas as oito entradas usam o mesmo marcador circular à esquerda e alinhado na mesma coluna, inclusive Praias.
