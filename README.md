@@ -1,31 +1,50 @@
 # Apê Parque Praia
 
-Projeto independente, sem ligação com Cordeiro Tattoos. Landing page estática em português, com navegação por âncoras, animações progressivas, menu móvel e respeito à preferência de movimento reduzido.
+Guia Mobile First de apresentação e apoio aos hóspedes, com identidade em verde oliva, areia e terracota. Projeto independente, publicado a partir da branch `main` de `pedrx30/apeparquepraia`.
 
-## Visualização local
+## Publicação e visualização
 
-Execute `node server.mjs` nesta pasta e acesse http://127.0.0.1:4173.
+A Vercel publica a pasta `dist`, conforme `vercel.json`. O site é estático, sem instalação de dependências ou compilação. A integração com GitHub publica novos commits na `main`.
 
-## Publicação na Vercel
+Site: https://apeparquepraia.vercel.app/
 
-O `vercel.json` na raiz do repositório configura o site estático para publicar `dist`, onde está o `index.html`. Não é necessário mover o HTML para a raiz. Use a raiz do repositório como Root Directory na Vercel, com a branch de produção `main`. Não há instalação de dependências ou etapa de compilação. Novos commits na main acionam a publicação quando a integração com GitHub está conectada.
+Prévia local: execute `node server.mjs` nesta pasta e abra http://127.0.0.1:4173.
 
-## Alterações do cliente
+## Conteúdo e arquivos
 
-- Foto principal: substitua `dist/assets/sacada.jpg`.
-- WhatsApp: preencha `CONTACT.whatsapp` no início de `dist/app.js`, somente com dígitos, incluindo país e DDD. O botão permanece indisponível até o preenchimento.
-- Vídeo: preencha `CONTACT.balconyVideo` no mesmo arquivo, com o caminho do MP4 em `dist/assets/` ou uma URL HTTPS direta de vídeo. O player tem controles nativos, sem reprodução automática. Adicione legendas ao receber o conteúdo.
-- Conteúdo: `dist/index.html`. Aparência: `dist/styles.css`.
-- QR code futuro: usar a URL pública definitiva seguida de `/#sacada`. Não imprimir um QR apontando para a versão privada de apresentação, que exige acesso do proprietário.
+- `dist/index.html`: boas-vindas com contatos, Wi-Fi e checkout; check-in; regras básicas; endereços; locais importantes; cozinha; sacada e rodapé.
+- `dist/praias.html`: nove praias em dois grupos, com fotos, descrições e Google Maps.
+- `dist/data.js`: dados dos oito cartões dos trilhos e das nove praias. No endereço de delivery, `unit` é somente exibido; `copyAddress` exclui o apartamento.
+- `dist/styles.css`: estilo Mobile First aprovado.
+- `dist/app.js`: menu, cópia de texto, navegação, vídeos locais e animações.
+- `dist/assets/`: fotos locais fornecidas pelo cliente.
+- `dist/vendor/`: GSAP 3.13.0 e ScrollTrigger, preservando os avisos de licença dos arquivos distribuídos.
+- `ESCOPO-V3.6.md`: escopo consolidado e refinamentos aprovados.
 
-## Localização e SEO
+## Movimento dos trilhos
 
-Endereço consultado no link Google fornecido: Lavitta Residences Beach and Park, Av. Eugênio Krause, 3650, Armação, Penha – SC, 88385-000. Nenhum telefone, avaliação ou dado comercial do condomínio foi atribuído ao apartamento. Não foi informado número de unidade.
+Uma cena fixa comum evita a troca de pins e alterações de layout durante o scroll. Os dois trilhos têm timelines horizontais independentes. Entre eles, uma fase vertical corresponde exatamente à altura do primeiro painel. Ao terminar, a rolagem continua para cozinha e sacada. O percurso é reversível.
 
-Metadados em português e dados estruturados LodgingBusiness incluídos. A versão privada não está disponível para indexação pública. Antes do lançamento, definir acesso público/domínio definitivo, canonical e sitemap, confirmar endereço com o cliente e revisar dados finais. Não há promessa de posicionamento em buscas.
+As âncoras Endereços e Locais importantes levam ao início de suas respectivas fases. Cozinha e Sacada usam a posição final da cena para localizar corretamente o conteúdo. Movimento reduzido ou ausência do GSAP deixam o conteúdo no fluxo vertical.
 
-## Segurança e manutenção
+## Próximas mídias do cliente
 
-Sem formulários, banco de dados, rastreadores, cookies de aplicação ou credenciais no navegador. Links externos isolados com noopener/noreferrer. Fontes são carregadas do Google Fonts, com alternativas locais. A hospedagem deverá usar HTTPS. Configuração de cabeçalhos está em `dist/_headers` quando suportada pelo provedor.
+No início de `dist/app.js`, preencha `MEDIA.checkinVideo` e `MEDIA.balconyVideo` com caminhos de MP4 locais, por exemplo `assets/checkin.mp4` e `assets/sacada.mp4`. Os vídeos aparecem dentro da página, com controles nativos, sem autoplay ou anexos externos. Adicione legendas quando o conteúdo estiver disponível.
 
-As fotos originais permanecem na pasta principal; somente os arquivos em dist compõem o site.
+Os vídeos ainda não foram fornecidos. O texto definitivo do check-in também está pendente. Os vídeos enviados como referência de animação não fazem parte da publicação.
+
+Para trocar fotos, substitua os arquivos correspondentes em `dist/assets`. Confirme o enquadramento no cartão após a troca. Para editar contatos e Wi-Fi, atualize a seção de boas-vindas; os contatos também aparecem no rodapé das duas páginas.
+
+## SEO e navegação
+
+Metadados em português, dados estruturados da hospedagem, canonical, robots.txt e sitemap incluídos. Ao conectar um domínio definitivo, atualize os URLs em ambos os HTMLs, robots.txt e sitemap.xml.
+
+QR code da sacada: `https://apeparquepraia.vercel.app/#sacada`.
+
+As descrições das praias, horários, distâncias e agrupamentos foram fornecidos pelo proprietário. Não representam consulta de balneabilidade ou certificação em tempo real.
+
+## Operação
+
+Sem banco de dados, formulários, rastreadores ou credenciais de infraestrutura no navegador. Links externos isolados por noopener/noreferrer. As fontes têm alternativas locais e são carregadas do Google Fonts. A Vercel aplica os cabeçalhos de `vercel.json`; `_headers` é mantido para provedores compatíveis.
+
+A demonstração e suas gravações permanecem fora deste repositório. Somente o site aprovado, seus ativos e documentação são publicados.
